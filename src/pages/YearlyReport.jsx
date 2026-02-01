@@ -18,8 +18,17 @@ export default function YearlyReport() {
     const { documents: allTransactions } = useCollection("transactions", query);
 
     // Filter and Aggregate Data
-    const { monthlyData, totalIncome, totalExpense, totalBalance } = useMemo(() => {
-        if (!allTransactions) return { monthlyData: [], totalIncome: 0, totalExpense: 0, totalBalance: 0 };
+    const { monthlyData, totalIncome, totalExpense, totalBalance, totalMainIncome, totalSideIncome, totalFixedCost, totalVariableCost } = useMemo(() => {
+        if (!allTransactions) return {
+            monthlyData: [],
+            totalIncome: 0,
+            totalExpense: 0,
+            totalBalance: 0,
+            totalMainIncome: 0,
+            totalSideIncome: 0,
+            totalFixedCost: 0,
+            totalVariableCost: 0
+        };
 
         const start = startOfYear(currentDate);
         const end = endOfYear(currentDate);
@@ -33,17 +42,36 @@ export default function YearlyReport() {
 
         let inc = 0;
         let exp = 0;
+        let mainInc = 0;
+        let sideInc = 0;
+        let fixedCost = 0;
+        let varCost = 0;
 
         allTransactions.forEach(t => {
             const date = parseISO(t.date);
             if (date >= start && date <= end) {
                 const month = getMonth(date); // 0-11
-                if (t.type === 'income_main' || t.type === 'income_side' || t.type === 'income') {
-                    data[month].income += t.amount;
-                    inc += t.amount;
-                } else if (t.type === 'fixed_cost' || t.type === 'variable_cost' || t.type === 'expense') {
-                    data[month].expense += t.amount;
-                    exp += t.amount;
+                if (t.type === 'income_main') {
+                    data[month].income += t.amount || 0;
+                    inc += t.amount || 0;
+                    mainInc += t.amount || 0;
+                } else if (t.type === 'income_side') {
+                    data[month].income += t.amount || 0;
+                    inc += t.amount || 0;
+                    sideInc += t.amount || 0;
+                } else if (t.type === 'income') {
+                    // Fallback for generic income
+                    data[month].income += t.amount || 0;
+                    inc += t.amount || 0;
+                    mainInc += t.amount || 0;
+                } else if (t.type === 'fixed_cost') {
+                    data[month].expense += t.amount || 0;
+                    exp += t.amount || 0;
+                    fixedCost += t.amount || 0;
+                } else if (t.type === 'variable_cost' || t.type === 'expense') {
+                    data[month].expense += t.amount || 0;
+                    exp += t.amount || 0;
+                    varCost += t.amount || 0;
                 }
             }
         });
@@ -52,7 +80,11 @@ export default function YearlyReport() {
             monthlyData: data,
             totalIncome: inc,
             totalExpense: exp,
-            totalBalance: inc - exp
+            totalBalance: inc - exp,
+            totalMainIncome: mainInc,
+            totalSideIncome: sideInc,
+            totalFixedCost: fixedCost,
+            totalVariableCost: varCost
         };
     }, [allTransactions, currentDate]);
 
@@ -86,6 +118,10 @@ export default function YearlyReport() {
                     <div className="content">
                         <h3>年間収入</h3>
                         <p className="amount">¥{totalIncome.toLocaleString()}</p>
+                        <div className="breakdown">
+                            <small>本業: ¥{totalMainIncome.toLocaleString()}</small>
+                            <small>副業: ¥{totalSideIncome.toLocaleString()}</small>
+                        </div>
                     </div>
                 </div>
                 <div className="summary-card expense">
@@ -93,6 +129,10 @@ export default function YearlyReport() {
                     <div className="content">
                         <h3>年間支出</h3>
                         <p className="amount">¥{totalExpense.toLocaleString()}</p>
+                        <div className="breakdown">
+                            <small>固定費: ¥{totalFixedCost.toLocaleString()}</small>
+                            <small>変動費: ¥{totalVariableCost.toLocaleString()}</small>
+                        </div>
                     </div>
                 </div>
                 <div className="summary-card balance">

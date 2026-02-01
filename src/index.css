@@ -914,6 +914,19 @@ input:focus {
   color: #F56565;
 }
 
+.summary-card .content .breakdown {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary-card .content .breakdown small {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  display: block;
+}
+
 /* Chart Section */
 .chart-section {
   background: white;
