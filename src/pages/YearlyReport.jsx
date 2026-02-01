@@ -112,9 +112,13 @@ export default function YearlyReport() {
                 </button>
             </div>
 
+            import {IconWallet, IconShoppingBag, IconTrendUp} from "../components/common/Icons";
+
+            // ... existing imports
+
             <div className="summary-grid">
                 <div className="summary-card income">
-                    <div className="icon">💰</div>
+                    <div className="icon"><IconWallet size={24} color="#48BB78" /></div>
                     <div className="content">
                         <h3>年間収入</h3>
                         <p className="amount">¥{totalIncome.toLocaleString()}</p>
@@ -125,7 +129,7 @@ export default function YearlyReport() {
                     </div>
                 </div>
                 <div className="summary-card expense">
-                    <div className="icon">💸</div>
+                    <div className="icon"><IconShoppingBag size={24} color="#F56565" /></div>
                     <div className="content">
                         <h3>年間支出</h3>
                         <p className="amount">¥{totalExpense.toLocaleString()}</p>
@@ -136,7 +140,7 @@ export default function YearlyReport() {
                     </div>
                 </div>
                 <div className="summary-card balance">
-                    <div className="icon">⚖️</div>
+                    <div className="icon"><IconTrendUp size={24} color="#ECC94B" /></div>
                     <div className="content">
                         <h3>年間収支</h3>
                         <p className={`amount ${totalBalance >= 0 ? 'plus' : 'minus'}`}>

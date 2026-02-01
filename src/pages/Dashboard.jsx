@@ -72,13 +72,24 @@ export default function Dashboard() {
                     <h2>{format(currentDate, "yyyy年 M月", { locale: ja })}</h2>
                     <button onClick={nextMonth}>&gt;</button>
                 </div>
+                import {IconChart, IconSettings, IconLogOut} from "../components/common/Icons";
+
+                // ... existing imports ...
+
+                // Inside component ...
                 <div className="header-actions">
                     <div className="user-display">
                         {currentUser?.displayName || currentUser?.email}
                     </div>
-                    <button className="btn-icon" onClick={() => navigate("/yearly")} title="Yearly Report">📊</button>
-                    <button className="btn-icon" onClick={() => navigate("/settings")} title="Settings">⚙️</button>
-                    <button className="btn-icon" onClick={handleLogout} title="Log Out">🚪</button>
+                    <button className="btn-icon" onClick={() => navigate("/yearly")} title="Yearly Report">
+                        <IconChart size={20} color="#718096" />
+                    </button>
+                    <button className="btn-icon" onClick={() => navigate("/settings")} title="Settings">
+                        <IconSettings size={20} color="#718096" />
+                    </button>
+                    <button className="btn-icon" onClick={handleLogout} title="Log Out">
+                        <IconLogOut size={20} color="#718096" />
+                    </button>
                 </div>
             </header>
 
