@@ -9,7 +9,7 @@ import IncomeStep from "../components/features/dashboard/IncomeStep";
 import FixedCostStep from "../components/features/dashboard/FixedCostStep";
 import VariableCostStep from "../components/features/dashboard/VariableCostStep";
 import ActionStep from "../components/features/dashboard/ActionStep";
-import { IconChart, IconSettings, IconLogOut } from "../components/common/Icons";
+import { IconChart, IconSettings, IconLogOut, IconNichiLogo } from "../components/common/Icons";
 
 export default function Dashboard() {
     const { currentUser, logout } = useAuth();
@@ -68,6 +68,9 @@ export default function Dashboard() {
         <div className="dashboard-container">
             {error && <div className="alert error" style={{ marginBottom: '20px', color: 'red', padding: '10px', background: '#fee' }}>⚠️ データ取得エラー: {error}</div>}
             <header className="dashboard-header-new">
+                <div className="logo-section">
+                    <IconNichiLogo size={80} color="#2D3748" />
+                </div>
                 <div className="month-selector">
                     <button onClick={prevMonth}>&lt;</button>
                     <h2>{format(currentDate, "yyyy年 M月", { locale: ja })}</h2>
