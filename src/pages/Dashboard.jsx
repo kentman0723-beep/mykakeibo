@@ -20,12 +20,7 @@ export default function Dashboard() {
     // For scaling, we should query by date range.
     const { documents: allTransactions, error } = useCollection("transactions", query);
 
-    // ... (rest of code)
-    
-    return (
-        <div className="dashboard-container">
-            {error && <div className="alert error">Error: {error}</div>}
-            <header className="dashboard-header-new">
+
 
     const transactions = useMemo(() => {
         if (!allTransactions) return [];
@@ -67,7 +62,7 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard-container">
-            {error && <div className="alert error" style={{marginBottom: '20px'}}>⚠️ データ取得エラー: {error}</div>}
+            {error && <div className="alert error" style={{ marginBottom: '20px' }}>⚠️ データ取得エラー: {error}</div>}
             <header className="dashboard-header-new">
                 <div className="month-selector">
                     <button onClick={prevMonth}>&lt;</button>
