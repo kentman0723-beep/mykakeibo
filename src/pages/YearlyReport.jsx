@@ -60,7 +60,7 @@ export default function YearlyReport() {
         <div className="layout-container">
             <header className="page-header-simple">
                 <button className="btn-back-simple" onClick={() => navigate("/")}>
-                    <span className="icon">←</span> Dashboard
+                    <span className="icon">←</span> ダッシュボード
                 </button>
             </header>
 
@@ -69,7 +69,7 @@ export default function YearlyReport() {
                     <span className="arrow">‹</span>
                 </button>
                 <div className="current-year">
-                    <span className="label">YEAR</span>
+                    <span className="label">対象年</span>
                     <span className="year-number">{format(currentDate, "yyyy")}</span>
                 </div>
                 <button onClick={nextYear} className="btn-year-nav">
@@ -81,21 +81,21 @@ export default function YearlyReport() {
                 <div className="summary-card income">
                     <div className="icon">💰</div>
                     <div className="content">
-                        <h3>Total Income</h3>
+                        <h3>年間収入</h3>
                         <p className="amount">¥{totalIncome.toLocaleString()}</p>
                     </div>
                 </div>
                 <div className="summary-card expense">
                     <div className="icon">💸</div>
                     <div className="content">
-                        <h3>Total Expense</h3>
+                        <h3>年間支出</h3>
                         <p className="amount">¥{totalExpense.toLocaleString()}</p>
                     </div>
                 </div>
                 <div className="summary-card balance">
                     <div className="icon">⚖️</div>
                     <div className="content">
-                        <h3>Balance</h3>
+                        <h3>年間収支</h3>
                         <p className={`amount ${totalBalance >= 0 ? 'plus' : 'minus'}`}>
                             ¥{totalBalance.toLocaleString()}
                         </p>
@@ -105,7 +105,7 @@ export default function YearlyReport() {
 
             <div className="chart-section">
                 <div className="section-header">
-                    <h3>Monthly Overview</h3>
+                    <h3>月別推移</h3>
                     <p className="subtitle">{format(currentDate, "yyyy")}年の月別収支推移</p>
                 </div>
                 <div className="chart-container-refined">
