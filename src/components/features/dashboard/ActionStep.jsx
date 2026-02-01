@@ -108,35 +108,30 @@ export default function ActionStep({ uid }) {
                     />
 
 
-                    // ... inside render (template add button)
-                    <button className="btn-green-plus" onClick={handleAddTemplate} title="登録">
+
+                // ... inside render (task add button)
+                    <button className="btn-green-plus" onClick={handleAddTask} title="追加">
                         <IconPlus size={20} />
                     </button>
                 </div>
-// ...
-                // ... inside render (task add button)
-                <button className="btn-green-plus" onClick={handleAddTask} title="追加">
-                    <IconPlus size={20} />
-                </button>
+
+                <ul className="action-list">
+                    {actions && actions.length === 0 && <li className="empty-message">タスクはありません</li>}
+                    {actions && actions.map(action => (
+                        <li key={action.id} className={action.completed ? 'completed' : ''}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={action.completed}
+                                    onChange={() => toggleComplete(action)}
+                                />
+                                <span>{action.title}</span>
+                            </label>
+                            <button onClick={() => deleteDocument(action.id)} className="btn-delete-x">×</button>
+                        </li>
+                    ))}
+                </ul>
             </div>
 
-            <ul className="action-list">
-                {actions && actions.length === 0 && <li className="empty-message">タスクはありません</li>}
-                {actions && actions.map(action => (
-                    <li key={action.id} className={action.completed ? 'completed' : ''}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={action.completed}
-                                onChange={() => toggleComplete(action)}
-                            />
-                            <span>{action.title}</span>
-                        </label>
-                        <button onClick={() => deleteDocument(action.id)} className="btn-delete-x">×</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-
-    );
+            );
 }

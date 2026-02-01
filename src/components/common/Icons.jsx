@@ -98,10 +98,10 @@ export const IconPlus = ({ size = 24, color = "currentColor", className = "" }) 
 );
 
 export const IconNichiLogo = ({ size = 24, color = "currentColor", className = "" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 100 40" fill="none" className={className}>
-        {/* Abstract Sun/Day Symbol */}
-        <circle cx="20" cy="20" r="12" stroke={color} strokeWidth="3" />
-        {/* Stylized Text 'nichi' */}
-        <text x="40" y="28" fontFamily="sans-serif" fontSize="24" fontWeight="bold" fill={color} letterSpacing="-1">nichi</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width={size * 2} height={size} viewBox="0 0 80 40" fill="none" className={className}>
+        {/* Sophisticated Minimal Logo: Stylized 'n' with a sunrise dot */}
+        <path d="M20 28V12C20 12 25 8 32 8C39 8 44 14 44 28" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="56" cy="14" r="3.5" fill="#ED8936" />{/* Vibrant accent dot */}
+        <text x="18" y="38" fontFamily="Poppins, sans-serif" fontSize="8" letterSpacing="2" fill={color} fontWeight="300" style={{ textTransform: 'uppercase' }}>nichi</text>
     </svg>
 );
