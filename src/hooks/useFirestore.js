@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { db } from "../services/firebase";
-import { collection, addDoc, deleteDoc, doc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, updateDoc, doc, Timestamp } from "firebase/firestore";
 
 export function useFirestore(collectionName) {
     const [loading, setLoading] = useState(false);
@@ -38,5 +38,18 @@ export function useFirestore(collectionName) {
         }
     };
 
-    return { addDocument, deleteDocument, loading, error };
+    // Update a document
+    const updateDocument = async (id, updates) => {
+        setLoading(true);
+        try {
+            await updateDoc(doc(ref, id), updates);
+            setLoading(false);
+        } catch (err) {
+            console.error(err);
+            setError(err.message);
+            setLoading(false);
+        }
+    };
+
+    return { addDocument, deleteDocument, updateDocument, loading, error };
 }
