@@ -1072,3 +1072,59 @@ input:focus {
   background: #EDF2F7;
   color: #E53E3E;
 }
+
+/* --- Refined List Layout (Restored) --- */
+.recent-variable-list ul,
+.history-list {
+  list-style: none;
+  /* Remove default bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.recent-variable-list li,
+.history-list li {
+  background: white;
+  border: 1px solid #EDF2F7;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  display: flex !important;
+  /* Force flex */
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recent-variable-list li:hover,
+.history-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #E2E8F0;
+}
+
+.recent-variable-list li .name,
+.history-list li .name {
+  font-weight: 500;
+  color: var(--color-text-main);
+  flex: 1;
+  /* Take available width */
+  text-align: left;
+  /* Ensure text aligns left */
+}
+
+.recent-variable-list li .amount,
+.history-list li .amount {
+  font-weight: 700;
+  margin-right: 15px;
+  color: var(--color-text-main);
+}
+
+.actions {
+  display: flex !important;
+  align-items: center;
+  gap: 8px !important;
+  /* Force horizontal spacing */
+  flex-shrink: 0;
+}
