@@ -9,6 +9,7 @@ import IncomeStep from "../components/features/dashboard/IncomeStep";
 import FixedCostStep from "../components/features/dashboard/FixedCostStep";
 import VariableCostStep from "../components/features/dashboard/VariableCostStep";
 import ActionStep from "../components/features/dashboard/ActionStep";
+import { IconChart, IconSettings, IconLogOut } from "../components/common/Icons";
 
 export default function Dashboard() {
     const { currentUser, logout } = useAuth();
@@ -72,11 +73,6 @@ export default function Dashboard() {
                     <h2>{format(currentDate, "yyyy年 M月", { locale: ja })}</h2>
                     <button onClick={nextMonth}>&gt;</button>
                 </div>
-                import {IconChart, IconSettings, IconLogOut} from "../components/common/Icons";
-
-                // ... existing imports ...
-
-                // Inside component ...
                 <div className="header-actions">
                     <div className="user-display">
                         {currentUser?.displayName || currentUser?.email}

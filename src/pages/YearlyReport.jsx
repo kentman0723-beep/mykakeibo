@@ -5,6 +5,7 @@ import { useCollection } from "../hooks/useCollection";
 import { format, startOfYear, endOfYear, addYears, subYears, parseISO, getMonth } from "date-fns";
 import { ja } from "date-fns/locale";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { IconWallet, IconShoppingBag, IconTrendUp } from "../components/common/Icons";
 
 export default function YearlyReport() {
     const { currentUser } = useAuth();
@@ -112,9 +113,6 @@ export default function YearlyReport() {
                 </button>
             </div>
 
-            import {IconWallet, IconShoppingBag, IconTrendUp} from "../components/common/Icons";
-
-            // ... existing imports
 
             <div className="summary-grid">
                 <div className="summary-card income">
