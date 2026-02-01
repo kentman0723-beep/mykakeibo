@@ -66,7 +66,7 @@ export default function FixedCostStep({ uid, transactions }) {
                         <li key={item.id}>
                             <span>{item.name}</span>
                             <span>¥{item.amount.toLocaleString()}</span>
-                            <button className="btn-delete-small" onClick={() => deleteTemplate(item.id)}>×</button>
+                            <button className="btn-delete-trash" onClick={() => deleteTemplate(item.id)} title="削除">🗑️</button>
                         </li>
                     ))}
                 </ul>
