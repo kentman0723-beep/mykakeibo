@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../services/firebase"; // Need auth instance or just import from firebase/auth if user object is available
 
 export default function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [nickname, setNickname] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const { signup } = useAuth();
@@ -21,7 +24,10 @@ export default function Signup() {
         try {
             setError("");
             setLoading(true);
-            await signup(email, password);
+            const userCredential = await signup(email, password);
+            await updateProfile(userCredential.user, {
+                displayName: nickname
+            });
             navigate("/");
         } catch (err) {
             console.error(err);
@@ -36,6 +42,17 @@ export default function Signup() {
                 <h2>Sign Up</h2>
                 {error && <div className="alert error">{error}</div>}
                 <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="nickname">Nickname</label>
+                        <input
+                            type="text"
+                            id="nickname"
+                            value={nickname}
+                            onChange={(e) => setNickname(e.target.value)}
+                            required
+                            placeholder="MyKakeibo User"
+                        />
+                    </div>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input
