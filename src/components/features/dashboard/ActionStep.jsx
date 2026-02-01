@@ -103,7 +103,9 @@ export default function ActionStep({ uid }) {
                         type="text"
                         value={task}
                         onChange={(e) => setTask(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && handleAddTask()}
                         placeholder="タスクを追加 (例: 振込)"
+                        className="input-task"
                     />
                     <button className="btn-green-plus" onClick={handleAddTask}>+</button>
                 </div>

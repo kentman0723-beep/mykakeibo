@@ -76,14 +76,17 @@ export default function FixedCostStep({ uid, transactions }) {
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="項目追加..."
+                        placeholder="項目名 (例: 家賃)"
+                        className="input-name"
                     />
                     <div className="amount-input-group">
                         <input
                             type="number"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleAddTemplate()}
                             placeholder="0"
+                            className="input-amount"
                         />
                         <span className="sc-unit">¥</span>
                     </div>

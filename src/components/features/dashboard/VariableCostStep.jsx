@@ -36,14 +36,16 @@ export default function VariableCostStep({ uid, transactions }) {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="スーパーなど"
-                        className="flex-grow"
+                        className="flex-grow input-name"
                     />
                     <div className="amount-input-group">
                         <input
                             type="number"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
                             placeholder="円"
+                            className="input-amount"
                         />
                     </div>
                     <button className="btn-orange-plus" onClick={handleAdd}>+</button>

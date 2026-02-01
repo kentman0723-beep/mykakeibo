@@ -48,14 +48,18 @@ export default function IncomeStep({ uid, transactions }) {
                                     type="number"
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
-                                    placeholder="金額"
+                                    onKeyDown={(e) => e.key === 'Enter' && handleAdd('income_main')}
+                                    placeholder="金額を入力"
+                                    className="input-large"
                                     autoFocus
                                 />
-                                <button onClick={() => handleAdd('income_main')}>確定</button>
-                                <button className="cancel" onClick={() => setIsAdding(null)}>✕</button>
+                                <div className="quick-add-actions">
+                                    <button className="btn-save" onClick={() => handleAdd('income_main')}>確定</button>
+                                    <button className="btn-cancel" onClick={() => setIsAdding(null)}>キャンセル</button>
+                                </div>
                             </div>
                         ) : (
-                            <button className="btn-add" onClick={() => setIsAdding('income_main')}>+ 登録</button>
+                            <button className="btn-add" onClick={() => setIsAdding('income_main')}>+ 収入を追加</button>
                         )}
                     </div>
                 </div>
@@ -72,14 +76,18 @@ export default function IncomeStep({ uid, transactions }) {
                                     type="number"
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
-                                    placeholder="金額"
+                                    onKeyDown={(e) => e.key === 'Enter' && handleAdd('income_side')}
+                                    placeholder="金額を入力"
+                                    className="input-large"
                                     autoFocus
                                 />
-                                <button onClick={() => handleAdd('income_side')}>確定</button>
-                                <button className="cancel" onClick={() => setIsAdding(null)}>✕</button>
+                                <div className="quick-add-actions">
+                                    <button className="btn-save" onClick={() => handleAdd('income_side')}>確定</button>
+                                    <button className="btn-cancel" onClick={() => setIsAdding(null)}>キャンセル</button>
+                                </div>
                             </div>
                         ) : (
-                            <button className="btn-add" onClick={() => setIsAdding('income_side')}>+ 登録</button>
+                            <button className="btn-add" onClick={() => setIsAdding('income_side')}>+ 収入を追加</button>
                         )}
                     </div>
                 </div>
