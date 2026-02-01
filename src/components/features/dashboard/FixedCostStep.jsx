@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
 
@@ -39,7 +40,7 @@ export default function FixedCostStep({ uid, transactions }) {
                 name: template.name,
                 amount: template.amount,
                 type: 'fixed_cost',
-                date: new Date().toISOString()
+                date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
             });
         });
 

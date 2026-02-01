@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 
 export default function VariableCostStep({ uid, transactions }) {
@@ -13,7 +14,7 @@ export default function VariableCostStep({ uid, transactions }) {
             name,
             amount: parseInt(amount),
             type: 'variable_cost',
-            date: new Date().toISOString()
+            date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
         });
         setName('');
         setAmount('');

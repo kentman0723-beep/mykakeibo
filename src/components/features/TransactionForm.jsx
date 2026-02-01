@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { format } from "date-fns";
 import { useFirestore } from "../../hooks/useFirestore";
 
 export default function TransactionForm({ uid }) {
@@ -16,7 +17,8 @@ export default function TransactionForm({ uid }) {
             name,
             amount: parseInt(amount, 10), // Ensure amount is a number
             type,
-            date: new Date().toISOString() // Simply store ISO string for now
+            type,
+            date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
         });
 
         // Reset form

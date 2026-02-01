@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 
 export default function IncomeStep({ uid, transactions }) {
@@ -22,7 +23,7 @@ export default function IncomeStep({ uid, transactions }) {
             name: type === 'income_main' ? '本業給与' : '副業・その他',
             amount: parseInt(amount),
             type: type,
-            date: new Date().toISOString()
+            date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
         });
         setAmount('');
         setIsAdding(null);
