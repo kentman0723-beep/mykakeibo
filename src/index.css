@@ -207,6 +207,7 @@ a {
 .card.balance .amount {
   color: var(--color-primary);
 }
+
 /* Transaction Form */
 .transaction-form-container {
   background: white;
@@ -336,8 +337,13 @@ a {
   gap: 1rem;
 }
 
-.transaction-item.income .transaction-amount span { color: #10b981; }
-.transaction-item.expense .transaction-amount span { color: #ef4444; }
+.transaction-item.income .transaction-amount span {
+  color: #10b981;
+}
+
+.transaction-item.expense .transaction-amount span {
+  color: #ef4444;
+}
 
 .btn-delete {
   background: #f1f5f9;
@@ -372,3 +378,419 @@ a {
   }
 }
 
+/* Dashboard New Redesign */
+.dashboard-container {
+  max-width: 600px;
+  /* Mobile first constrained width for the mock look */
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  color: #333;
+}
+
+.dashboard-header-new {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  background: #f0f2f5;
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.month-selector button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.month-selector h2 {
+  margin: 0 15px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.total-summary {
+  text-align: left;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.total-summary .label {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.total-summary h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.total-summary h1.plus {
+  color: #007bff;
+}
+
+.total-summary h1.minus {
+  color: #dc3545;
+}
+
+.sub-totals {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.sub-totals .inc {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.sub-totals .exp {
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* Steps Common */
+.step-container {
+  margin-bottom: 40px;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.step-label {
+  background: #e6f0ff;
+  color: #0066ff;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.step-label.purple {
+  background: #f3e5f5;
+  color: #9c27b0;
+}
+
+.step-label.orange {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.step-label.green {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.step-header h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Step 1: Income */
+.income-cards {
+  display: flex;
+  gap: 10px;
+}
+
+.income-card {
+  flex: 1;
+  border: 2px solid;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  background: white;
+}
+
+.income-card.main {
+  border-color: #007bff;
+}
+
+.income-card.side {
+  border-color: #00bcd4;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.income-card h3 {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+}
+
+.income-card .amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 5px 0 15px;
+}
+
+.btn-add {
+  background: #e6f0ff;
+  color: #007bff;
+  border: none;
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.income-card.side .btn-add {
+  background: #e0f7fa;
+  color: #00acc1;
+}
+
+.quick-add {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.quick-add input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Step 2: Fixed Cost */
+.fixed-cost-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.card-description {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.template-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.template-list li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+  font-size: 0.9rem;
+}
+
+.template-list li:last-child {
+  border-bottom: none;
+}
+
+.btn-delete-small {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+}
+
+.add-template-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.add-template-row input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-template-row input[type="text"] {
+  flex: 2;
+}
+
+.amount-input-group {
+  flex: 1.5;
+  position: relative;
+}
+
+.amount-input-group input {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.sc-unit {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.btn-plus {
+  background: #9c27b0;
+  color: white;
+  border: none;
+  width: 35px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.btn-bulk-reflect {
+  width: 100%;
+  background: #9c27b0;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(156, 39, 176, 0.3);
+}
+
+.btn-bulk-reflect:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.note {
+  font-size: 0.7rem;
+  color: #999;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Step 3: Variable Cost */
+.variable-cost-card {
+  border: 1px solid #ffcc80;
+  border-radius: 12px;
+  padding: 15px;
+  background: #fffbf5;
+}
+
+.input-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.btn-orange-plus {
+  background: #ef6c00;
+  color: white;
+  border: none;
+  width: 40px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.recent-variable-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-variable-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px dashed #ffd180;
+  font-size: 0.9rem;
+}
+
+/* Step 4: Actions */
+.action-card {
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 15px;
+  background: #f1f8e9;
+}
+
+.btn-set-default {
+  width: 100%;
+  background: white;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  padding: 5px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.add-task-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.add-task-row input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+}
+
+.btn-green-plus {
+  background: #4caf50;
+  color: white;
+  border: none;
+  width: 35px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.action-list {
+  list-style: none;
+  padding: 0;
+}
+
+.action-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.action-list li label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.action-list li.completed span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.btn-delete-x {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+}
