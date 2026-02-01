@@ -16,20 +16,21 @@ export default function Dashboard() {
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const query = useMemo(() => ["uid", "==", currentUser?.uid], [currentUser?.uid]);
-    const order = useMemo(() => ["date", "desc"], []);
-
     // Note: Fetching all transactions and filtering client-side for now.
     // For scaling, we should query by date range.
-    const { documents: allTransactions } = useCollection("transactions", query, order);
+    const { documents: allTransactions } = useCollection("transactions", query);
 
     const transactions = useMemo(() => {
         if (!allTransactions) return [];
         const start = startOfMonth(currentDate);
         const end = endOfMonth(currentDate);
-        return allTransactions.filter(t => {
-            const date = parseISO(t.date);
-            return date >= start && date <= end;
-        });
+
+        return allTransactions
+            .filter(t => {
+                const date = parseISO(t.date);
+                return date >= start && date <= end;
+            })
+            .sort((a, b) => new Date(b.date) - new Date(a.date)); // Client-side sort
     }, [allTransactions, currentDate]);
 
     // Calculate totals
