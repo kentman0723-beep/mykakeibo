@@ -60,7 +60,7 @@ export default function VariableCostStep({ uid, transactions }) {
                             {variableCosts.slice(0, 5).map(item => (
                                 <li key={item.id}>
                                     <span className="name">{item.name}</span>
-                                    <span className="amount">¥{item.amount.toLocaleString()}</span>
+                                    <span className="amount">¥{(item.amount || 0).toLocaleString()}</span>
                                 </li>
                             ))}
                         </ul>
