@@ -44,11 +44,10 @@ export default function IncomeStep({ uid, transactions }) {
                 <span className="step-label">STEP 1</span>
                 <h2>収入の入力</h2>
                 <button
-                    className="btn-text"
+                    className="btn-history-toggle"
                     onClick={() => setShowHistory(!showHistory)}
-                    style={{ marginLeft: 'auto', fontSize: '12px', color: '#666', textDecoration: 'underline' }}
                 >
-                    {showHistory ? '履歴を閉じる' : '履歴・修正'}
+                    {showHistory ? '▲ 閉じる' : '⚙️ 履歴・修正'}
                 </button>
             </div>
             {error && <div className="alert error">保存エラー: {error}</div>}
