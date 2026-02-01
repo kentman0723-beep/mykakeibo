@@ -132,5 +132,6 @@ export default function ActionStep({ uid }) {
                     ))}
                 </ul>
             </div>
-            );
+        </div>
+    );
 }
