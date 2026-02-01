@@ -16,11 +16,9 @@ export default function Dashboard() {
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const query = useMemo(() => ["uid", "==", currentUser?.uid], [currentUser?.uid]);
-    // Note: Fetching all transactions and filtering client-side for now.
-    // For scaling, we should query by date range.
+
+    // Fetch all transactions and filter client-side
     const { documents: allTransactions, error } = useCollection("transactions", query);
-
-
 
     const transactions = useMemo(() => {
         if (!allTransactions) return [];
@@ -29,20 +27,25 @@ export default function Dashboard() {
 
         return allTransactions
             .filter(t => {
+                if (!t.date) return false;
                 const date = parseISO(t.date);
                 return date >= start && date <= end;
             })
-            .sort((a, b) => new Date(b.date) - new Date(a.date)); // Client-side sort
+            .sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateB - dateA;
+            });
     }, [allTransactions, currentDate]);
 
     // Calculate totals
     const income = transactions.reduce((acc, t) => {
-        if (t.type === 'income_main' || t.type === 'income_side' || t.type === 'income') return acc + t.amount;
+        if (t.type === 'income_main' || t.type === 'income_side' || t.type === 'income') return acc + (t.amount || 0);
         return acc;
     }, 0);
 
     const expense = transactions.reduce((acc, t) => {
-        if (t.type === 'fixed_cost' || t.type === 'variable_cost' || t.type === 'expense') return acc + t.amount;
+        if (t.type === 'fixed_cost' || t.type === 'variable_cost' || t.type === 'expense') return acc + (t.amount || 0);
         return acc;
     }, 0);
 
@@ -62,7 +65,7 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard-container">
-            {error && <div className="alert error" style={{ marginBottom: '20px' }}>⚠️ データ取得エラー: {error}</div>}
+            {error && <div className="alert error" style={{ marginBottom: '20px', color: 'red', padding: '10px', background: '#fee' }}>⚠️ データ取得エラー: {error}</div>}
             <header className="dashboard-header-new">
                 <div className="month-selector">
                     <button onClick={prevMonth}>&lt;</button>
@@ -71,7 +74,7 @@ export default function Dashboard() {
                 </div>
                 <div className="header-actions">
                     <div className="user-display">
-                        {currentUser.displayName || currentUser.email}
+                        {currentUser?.displayName || currentUser?.email}
                     </div>
                     <button className="btn-icon" onClick={() => navigate("/yearly")} title="Yearly Report">📊</button>
                     <button className="btn-icon" onClick={() => navigate("/settings")} title="Settings">⚙️</button>
@@ -88,10 +91,10 @@ export default function Dashboard() {
             </div>
 
             <main className="steps-wrapper">
-                <IncomeStep uid={currentUser.uid} transactions={transactions} />
-                <FixedCostStep uid={currentUser.uid} transactions={transactions} />
-                <VariableCostStep uid={currentUser.uid} transactions={transactions} />
-                <ActionStep uid={currentUser.uid} />
+                <IncomeStep uid={currentUser?.uid} transactions={transactions} />
+                <FixedCostStep uid={currentUser?.uid} transactions={transactions} />
+                <VariableCostStep uid={currentUser?.uid} transactions={transactions} />
+                <ActionStep uid={currentUser?.uid} />
             </main>
         </div>
     );
