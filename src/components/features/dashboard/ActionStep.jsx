@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
 
@@ -7,16 +7,12 @@ export default function ActionStep({ uid }) {
     const { addDocument: addTemplate, deleteDocument: deleteTemplate } = useFirestore('user_settings');
 
     // Fetch actions
-    const { documents: actions } = useCollection(
-        'monthly_actions',
-        ['uid', '==', uid]
-    );
+    const actionsQuery = useMemo(() => ['uid', '==', uid], [uid]);
+    const { documents: actions } = useCollection('monthly_actions', actionsQuery);
 
     // Fetch templates
-    const { documents: allSettings } = useCollection(
-        'user_settings',
-        ['uid', '==', uid]
-    );
+    const settingsQuery = useMemo(() => ['uid', '==', uid], [uid]);
+    const { documents: allSettings } = useCollection('user_settings', settingsQuery);
     const templates = allSettings ? allSettings.filter(s => s.type === 'action_template') : [];
 
     const [task, setTask] = useState('');

@@ -11,7 +11,10 @@ export default function YearlyReport() {
     const navigate = useNavigate();
     const [currentDate, setCurrentDate] = useState(new Date());
 
-    const query = useMemo(() => ["uid", "==", currentUser?.uid], [currentUser?.uid]);
+    const query = useMemo(() => {
+        if (!currentUser?.uid) return null; // Return null if no UID
+        return ["uid", "==", currentUser.uid];
+    }, [currentUser?.uid]);
     const { documents: allTransactions } = useCollection("transactions", query);
 
     // Filter and Aggregate Data

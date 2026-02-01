@@ -10,9 +10,10 @@ export function useCollection(collectionName, _query, _orderBy) {
     // If they are not memoized, this effect will re-run on every render.
 
     useEffect(() => {
-        // Guard: If any value in the query is undefined, do not execute
-        if (_query && _query.some(val => val === undefined)) {
-            console.log("Query skipped due to undefined value:", _query);
+        // Guard: If _query is provided but contains undefined, skip.
+        // If _query is explicitly null (meaning "don't fetch yet"), skip.
+        if (!_query || _query.some(val => val === undefined)) {
+            // console.log("Query skipped:", _query);
             return;
         }
 
