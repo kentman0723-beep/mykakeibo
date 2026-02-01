@@ -97,11 +97,11 @@ export const IconPlus = ({ size = 24, color = "currentColor", className = "" }) 
     </svg>
 );
 
-export const IconNichiLogo = ({ size = 24, color = "currentColor", className = "" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size * 2} height={size} viewBox="0 0 80 40" fill="none" className={className}>
-        {/* Sophisticated Minimal Logo: Stylized 'n' with a sunrise dot */}
-        <path d="M20 28V12C20 12 25 8 32 8C39 8 44 14 44 28" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="56" cy="14" r="3.5" fill="#ED8936" />{/* Vibrant accent dot */}
-        <text x="18" y="38" fontFamily="Poppins, sans-serif" fontSize="8" letterSpacing="2" fill={color} fontWeight="300" style={{ textTransform: 'uppercase' }}>nichi</text>
-    </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width={size * 2.2} height={size} viewBox="0 0 88 40" fill="none" className={className}>
+    {/* Version 3: Modern Geometric "N" with rising sun abstraction */}
+    <path d="M22 28V12" stroke={color} strokeWidth="3" strokeLinecap="round" />
+    <path d="M22 14C22 14 28 8 36 8C44 8 44 16 44 28" stroke={color} strokeWidth="3" strokeLinecap="round" />
+    <circle cx="58" cy="12" r="4" fill="#ED8936" />
+    <text x="20" y="38" fontFamily="sans-serif" fontSize="9" letterSpacing="3" fill={color} fontWeight="500" style={{ textTransform: 'uppercase' }}>nichi</text>
+</svg>
 );
