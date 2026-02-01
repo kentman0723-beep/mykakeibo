@@ -30,7 +30,7 @@ export function useCollection(collectionName, _query, _orderBy) {
             setError(null);
         }, (error) => {
             console.error(error);
-            setError("Could not fetch the data");
+            setError(error.message);
         });
 
         return () => unsubscribe();
