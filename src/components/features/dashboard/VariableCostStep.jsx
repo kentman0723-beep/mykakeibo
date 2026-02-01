@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
+import EditTransactionModal from '../../common/EditTransactionModal';
 
 export default function VariableCostStep({ uid, transactions }) {
-    const { addDocument } = useFirestore('transactions');
+    const { addDocument, updateDocument, deleteDocument } = useFirestore('transactions');
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
+
+    // Modal state
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingItem, setEditingItem] = useState(null);
 
     const handleAdd = async () => {
         if (!name || !amount) return;
@@ -20,7 +25,16 @@ export default function VariableCostStep({ uid, transactions }) {
         setAmount('');
     };
 
-    // Filter variable costs for this month (optional: just assume 'transactions' prop is passed correctly)
+    const openEditModal = (item) => {
+        setEditingItem(item);
+        setIsModalOpen(true);
+    };
+
+    const handleUpdate = async (id, updates) => {
+        await updateDocument(id, updates);
+    };
+
+    // Filter variable costs for this month
     const variableCosts = transactions ? transactions.filter(t => t.type === 'variable_cost') : [];
 
     return (
@@ -57,16 +71,27 @@ export default function VariableCostStep({ uid, transactions }) {
                         <p className="empty-message">今月の入力はまだありません</p>
                     ) : (
                         <ul>
-                            {variableCosts.slice(0, 5).map(item => (
+                            {variableCosts.map(item => (
                                 <li key={item.id}>
                                     <span className="name">{item.name}</span>
                                     <span className="amount">¥{(item.amount || 0).toLocaleString()}</span>
+                                    <div className="actions">
+                                        <button className="btn-edit" onClick={() => openEditModal(item)} title="修正">✏️</button>
+                                        <button className="btn-delete" onClick={() => deleteDocument(item.id)} title="削除">×</button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
                     )}
                 </div>
             </div>
+
+            <EditTransactionModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                transaction={editingItem}
+                onUpdate={handleUpdate}
+            />
         </div>
     );
 }

@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
+import EditTransactionModal from '../../common/EditTransactionModal';
 
 export default function IncomeStep({ uid, transactions }) {
-    const { addDocument, error } = useFirestore('transactions');
+    const { addDocument, updateDocument, deleteDocument, error } = useFirestore('transactions');
     const [isAdding, setIsAdding] = useState(null); // 'main' or 'side' or null
     const [amount, setAmount] = useState('');
 
-    // Filter current month's income
-    const currentMonthIncomeMain = transactions
-        .filter(t => t.type === 'income_main')
-        .reduce((acc, curr) => acc + (curr.amount || 0), 0);
+    // History & Edit State
+    const [showHistory, setShowHistory] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingItem, setEditingItem] = useState(null);
 
-    const currentMonthIncomeSide = transactions
-        .filter(t => t.type === 'income_side')
-        .reduce((acc, curr) => acc + (curr.amount || 0), 0);
+    // Filter current month's income logic
+    const mainIncomes = transactions.filter(t => t.type === 'income_main');
+    const sideIncomes = transactions.filter(t => t.type === 'income_side');
+
+    const currentMonthIncomeMain = mainIncomes.reduce((acc, curr) => acc + (curr.amount || 0), 0);
+    const currentMonthIncomeSide = sideIncomes.reduce((acc, curr) => acc + (curr.amount || 0), 0);
 
     const handleAdd = async (type) => {
         if (!amount) return;
@@ -29,11 +33,23 @@ export default function IncomeStep({ uid, transactions }) {
         setIsAdding(null);
     };
 
+    const openEditModal = (item) => {
+        setEditingItem(item);
+        setIsModalOpen(true);
+    };
+
     return (
         <div className="step-container">
             <div className="step-header">
                 <span className="step-label">STEP 1</span>
                 <h2>収入の入力</h2>
+                <button
+                    className="btn-text"
+                    onClick={() => setShowHistory(!showHistory)}
+                    style={{ marginLeft: 'auto', fontSize: '12px', color: '#666', textDecoration: 'underline' }}
+                >
+                    {showHistory ? '履歴を閉じる' : '履歴・修正'}
+                </button>
             </div>
             {error && <div className="alert error">保存エラー: {error}</div>}
 
@@ -94,6 +110,32 @@ export default function IncomeStep({ uid, transactions }) {
                     </div>
                 </div>
             </div>
+
+            {/* History List for Edit/Delete */}
+            {showHistory && (
+                <div className="income-history" style={{ marginTop: '15px', background: '#f8f9fa', padding: '10px', borderRadius: '8px' }}>
+                    <p style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '5px' }}>今月の収入履歴</p>
+                    <ul className="history-list">
+                        {[...mainIncomes, ...sideIncomes].map(item => (
+                            <li key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 0', borderBottom: '1px solid #eee' }}>
+                                <span>{item.name}: ¥{item.amount.toLocaleString()}</span>
+                                <div className="actions">
+                                    <button className="btn-edit" onClick={() => openEditModal(item)} title="修正">✏️</button>
+                                    <button className="btn-delete" onClick={() => deleteDocument(item.id)} title="削除">×</button>
+                                </div>
+                            </li>
+                        ))}
+                        {[...mainIncomes, ...sideIncomes].length === 0 && <p style={{ fontSize: '12px', color: '#999' }}>履歴はありません</p>}
+                    </ul>
+                </div>
+            )}
+
+            <EditTransactionModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                transaction={editingItem}
+                onUpdate={(id, data) => updateDocument(id, data)}
+            />
         </div>
     );
 }
