@@ -18,7 +18,10 @@ export function useFirestore(collectionName) {
             setLoading(false);
             return addedDocument;
         } catch (err) {
-            console.error(err);
+            console.error("Firestore Add Error:", err);
+            console.error("Code:", err.code);
+            console.error("Message:", err.message);
+            console.error("Details:", err);
             setError(err.message);
             setLoading(false);
             return null;
