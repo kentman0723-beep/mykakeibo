@@ -85,10 +85,9 @@ export default function FixedCostStep({ uid, transactions }) {
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleAddTemplate()}
-                            placeholder="0"
+                            placeholder="金額"
                             className="input-amount"
                         />
-                        <span className="sc-unit">¥</span>
                     </div>
                     <button className="btn-plus" onClick={handleAddTemplate}>+</button>
                 </div>
