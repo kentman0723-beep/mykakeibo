@@ -69,6 +69,7 @@ export default function Dashboard() {
                     <div className="user-display">
                         {currentUser.displayName || currentUser.email}
                     </div>
+                    <button className="btn-icon" onClick={() => navigate("/yearly")} title="Yearly Report">📊</button>
                     <button className="btn-icon" onClick={() => navigate("/settings")} title="Settings">⚙️</button>
                     <button className="btn-icon" onClick={handleLogout} title="Log Out">🚪</button>
                 </div>

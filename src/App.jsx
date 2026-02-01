@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
+import YearlyReport from './pages/YearlyReport';
 import PrivateRoute from './components/common/PrivateRoute';
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
           <Route path="/settings" element={
             <PrivateRoute>
               <Settings />
+            </PrivateRoute>
+          } />
+          <Route path="/yearly" element={
+            <PrivateRoute>
+              <YearlyReport />
             </PrivateRoute>
           } />
           <Route path="/login" element={<Login />} />
