@@ -4,7 +4,7 @@ import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
 
 export default function FixedCostStep({ uid, transactions }) {
-    const { addDocument: addTransaction } = useFirestore('transactions');
+    const { addDocument: addTransaction, deleteDocument: deleteTransaction } = useFirestore('transactions');
     const { addDocument: addTemplate, deleteDocument: deleteTemplate } = useFirestore('user_settings');
     // We'll use 'user_settings' collection to store fixed cost templates with type='fixed_cost_template'
 
@@ -99,6 +99,28 @@ export default function FixedCostStep({ uid, transactions }) {
                     ⬇ 一括反映する
                 </button>
                 <p className="note">※反映後も個別に削除可能です</p>
+            </div>
+
+            {/* Display Registered Fixed Costs for Current Month */}
+            <div className="registered-fixed-costs" style={{ marginTop: '30px' }}>
+                <h3 style={{ fontSize: '1rem', color: '#4A5568', marginBottom: '15px' }}>今月の固定費 (登録済み)</h3>
+                {transactions && transactions.filter(t => t.type === 'fixed_cost').length === 0 ? (
+                    <p style={{ color: '#A0AEC0', fontSize: '0.9rem', textAlign: 'center' }}>まだ反映されていません</p>
+                ) : (
+                    <ul className="history-list">
+                        {transactions && transactions.filter(t => t.type === 'fixed_cost').map(item => (
+                            <li key={item.id}>
+                                <span className="name">{item.name}</span>
+                                <span className="amount">¥{(item.amount || 0).toLocaleString()}</span>
+                                <div className="actions">
+                                    <button className="btn-delete" onClick={() => deleteTransaction(item.id)} title="削除">
+                                        ×
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     );
