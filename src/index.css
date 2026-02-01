@@ -81,20 +81,22 @@ h3 {
   letter-spacing: -0.02em;
 }
 
-/* Fixed & Variable Rows */
+/* Fixed & Variable & Action Rows */
 .add-template-row,
-.input-row {
+.input-row,
+.add-task-row {
   display: flex;
   gap: 15px;
   /* More gap */
   align-items: center;
 }
 
-.input-name {
+.input-name,
+.input-task {
   flex: 3;
 }
 
-/* Give more space to name */
+/* Give more space to name/task */
 .amount-input-group {
   flex: 1.5;
   position: relative;
@@ -106,11 +108,13 @@ h3 {
 @media (max-width: 600px) {
 
   .add-template-row,
-  .input-row {
+  .input-row,
+  .add-task-row {
     flex-wrap: wrap;
   }
 
-  .input-name {
+  .input-name,
+  .input-task {
     width: 100%;
     flex: none;
     order: 1;
