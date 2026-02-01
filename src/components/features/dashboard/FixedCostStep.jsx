@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
@@ -9,10 +9,8 @@ export default function FixedCostStep({ uid, transactions }) {
     // We'll use 'user_settings' collection to store fixed cost templates with type='fixed_cost_template'
 
     // Fetch fixed cost templates
-    const { documents: templates } = useCollection(
-        'user_settings',
-        ['uid', '==', uid]
-    );
+    const query = useMemo(() => ['uid', '==', uid], [uid]);
+    const { documents: templates } = useCollection('user_settings', query);
 
     const fixedCostTemplates = templates ? templates.filter(t => t.type === 'fixed_cost_template') : [];
 
