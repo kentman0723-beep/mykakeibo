@@ -109,7 +109,7 @@ export default function ActionStep({ uid }) {
 
 
 
-                // ... inside render (task add button)
+                // ... inside render (task add button) -> Remove this locally within search range if possible, or just overwrite the whole block.
                     <button className="btn-green-plus" onClick={handleAddTask} title="追加">
                         <IconPlus size={20} />
                     </button>
@@ -132,6 +132,5 @@ export default function ActionStep({ uid }) {
                     ))}
                 </ul>
             </div>
-
             );
 }
