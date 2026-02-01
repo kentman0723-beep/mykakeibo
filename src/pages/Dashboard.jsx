@@ -96,6 +96,24 @@ export default function Dashboard() {
                 <VariableCostStep uid={currentUser?.uid} transactions={transactions} />
                 <ActionStep uid={currentUser?.uid} />
             </main>
+
+            {/* Debug Footer - Temporary for troubleshooting */}
+            <div style={{ marginTop: '50px', padding: '10px', fontSize: '12px', color: '#888', background: '#f5f5f5', borderRadius: '4px' }}>
+                <details>
+                    <summary>Debug Info (Troubleshooting)</summary>
+                    <p>UID: {currentUser?.uid}</p>
+                    <p>Total Items Fetched: {allTransactions ? allTransactions.length : 'Loading...'}</p>
+                    <p>Items in Current Month: {transactions.length}</p>
+                    <p>Filter Start: {format(startOfMonth(currentDate), "yyyy-MM-dd HH:mm:ss")}</p>
+                    <p>Filter End: {format(endOfMonth(currentDate), "yyyy-MM-dd HH:mm:ss")}</p>
+                    <p>Last 3 Items Dates:</p>
+                    <ul>
+                        {allTransactions && allTransactions.slice(0, 3).map(t => (
+                            <li key={t.id}>{t.name}: {t.date} ({t.amount})</li>
+                        ))}
+                    </ul>
+                </details>
+            </div>
         </div>
     );
 }
