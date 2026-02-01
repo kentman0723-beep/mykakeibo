@@ -49,7 +49,7 @@ export default function IncomeStep({ uid, transactions }) {
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleAdd('income_main')}
-                                    placeholder="金額を入力"
+                                    placeholder="円"
                                     className="input-large"
                                     autoFocus
                                 />
@@ -77,7 +77,7 @@ export default function IncomeStep({ uid, transactions }) {
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleAdd('income_side')}
-                                    placeholder="金額を入力"
+                                    placeholder="円"
                                     className="input-large"
                                     autoFocus
                                 />

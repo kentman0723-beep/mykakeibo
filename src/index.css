@@ -163,21 +163,28 @@ input:focus {
 
 .btn-add,
 .btn-save,
-.btn-cancel,
+.btn-cancel {
+  height: 48px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
 .btn-plus,
 .btn-orange-plus,
 .btn-green-plus {
   height: 48px;
-  /* Match input height */
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  /* Prevent button from shrinking */
   width: 50px;
+  /* Square for icon buttons */
   height: 50px;
-  /* Consistent large size */
+  border-radius: 12px;
   margin-left: 5px;
 }
 

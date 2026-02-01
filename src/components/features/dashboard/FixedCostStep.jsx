@@ -85,7 +85,7 @@ export default function FixedCostStep({ uid, transactions }) {
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleAddTemplate()}
-                            placeholder="金額"
+                            placeholder="円"
                             className="input-amount"
                         />
                     </div>
