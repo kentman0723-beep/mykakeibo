@@ -3,31 +3,13 @@ import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 
 export default function IncomeStep({ uid, transactions }) {
-    const { addDocument } = useFirestore('transactions');
+    const { addDocument, error } = useFirestore('transactions');
     const [isAdding, setIsAdding] = useState(null); // 'main' or 'side' or null
     const [amount, setAmount] = useState('');
 
-    // Filter current month's income
-    const currentMonthIncomeMain = transactions
-        .filter(t => t.type === 'income_main')
-        .reduce((acc, curr) => acc + curr.amount, 0);
+    // ... (filters)
 
-    const currentMonthIncomeSide = transactions
-        .filter(t => t.type === 'income_side')
-        .reduce((acc, curr) => acc + curr.amount, 0);
-
-    const handleAdd = async (type) => {
-        if (!amount) return;
-        await addDocument({
-            uid,
-            name: type === 'income_main' ? '本業給与' : '副業・その他',
-            amount: parseInt(amount),
-            type: type,
-            date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
-        });
-        setAmount('');
-        setIsAdding(null);
-    };
+    // ... (handleAdd)
 
     return (
         <div className="step-container">
@@ -35,6 +17,7 @@ export default function IncomeStep({ uid, transactions }) {
                 <span className="step-label">STEP 1</span>
                 <h2>収入の入力</h2>
             </div>
+            {error && <div className="alert error">保存エラー: {error}</div>}
 
             <div className="income-cards">
                 {/* Main Job Card */}

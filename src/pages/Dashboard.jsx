@@ -18,7 +18,14 @@ export default function Dashboard() {
     const query = useMemo(() => ["uid", "==", currentUser?.uid], [currentUser?.uid]);
     // Note: Fetching all transactions and filtering client-side for now.
     // For scaling, we should query by date range.
-    const { documents: allTransactions } = useCollection("transactions", query);
+    const { documents: allTransactions, error } = useCollection("transactions", query);
+
+    // ... (rest of code)
+    
+    return (
+        <div className="dashboard-container">
+            {error && <div className="alert error">Error: {error}</div>}
+            <header className="dashboard-header-new">
 
     const transactions = useMemo(() => {
         if (!allTransactions) return [];
@@ -60,6 +67,7 @@ export default function Dashboard() {
 
     return (
         <div className="dashboard-container">
+            {error && <div className="alert error" style={{marginBottom: '20px'}}>⚠️ データ取得エラー: {error}</div>}
             <header className="dashboard-header-new">
                 <div className="month-selector">
                     <button onClick={prevMonth}>&lt;</button>
