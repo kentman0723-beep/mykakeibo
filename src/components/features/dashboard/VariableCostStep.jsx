@@ -64,9 +64,7 @@ export default function VariableCostStep({ uid, transactions }) {
                             className="input-amount"
                         />
                     </div>
-                    import {IconPlus} from '../../common/Icons';
 
-                    // ... (top imports)
 
                     // ... inside render
                     <button className="btn-orange-plus" onClick={handleAdd} title="追加">

@@ -89,9 +89,7 @@ export default function FixedCostStep({ uid, transactions }) {
                             className="input-amount"
                         />
                     </div>
-                    import {IconPlus} from '../../common/Icons';
 
-                    // ...
 
                     <button className="btn-plus" onClick={handleAddTemplate} title="追加">
                         <IconPlus size={20} />

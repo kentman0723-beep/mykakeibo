@@ -106,9 +106,7 @@ export default function ActionStep({ uid }) {
                         placeholder="タスクを追加 (例: 振込)"
                         className="input-task"
                     />
-                    import {IconPlus} from '../../common/Icons';
 
-                    // ... imports
 
                     // ... inside render (template add button)
                     <button className="btn-green-plus" onClick={handleAddTemplate} title="登録">
@@ -139,6 +137,6 @@ export default function ActionStep({ uid }) {
                 ))}
             </ul>
         </div>
-        </div >
+
     );
 }
