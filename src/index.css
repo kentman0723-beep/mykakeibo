@@ -66,7 +66,8 @@ button {
 
 .layout-container,
 .dashboard-container {
-  max-width: 600px;
+  max-width: 1000px;
+  /* Widened from 600px */
   margin: 0 auto;
   padding: 30px 20px;
   animation: fadeIn 0.4s ease-out;
@@ -78,6 +79,79 @@ h2,
 h3 {
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+/* Fixed & Variable Rows */
+.add-template-row,
+.input-row {
+  display: flex;
+  gap: 15px;
+  /* More gap */
+  align-items: center;
+}
+
+.input-name {
+  flex: 3;
+}
+
+/* Give more space to name */
+.amount-input-group {
+  flex: 1.5;
+  position: relative;
+  min-width: 120px;
+  /* Ensure minimum width for amount */
+}
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+
+  .add-template-row,
+  .input-row {
+    flex-wrap: wrap;
+  }
+
+  .input-name {
+    width: 100%;
+    flex: none;
+    order: 1;
+    margin-bottom: 10px;
+  }
+
+  .amount-input-group {
+    flex: 1;
+    order: 2;
+  }
+
+  .btn-plus,
+  .btn-orange-plus,
+  .btn-green-plus {
+    order: 3;
+  }
+}
+
+.amount-input-group input {
+  width: 100%;
+  padding-right: 30px;
+  /* Space for unit */
+}
+
+.sc-unit {
+  position: absolute;
+  right: 10px;
+  color: #a0aec0;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.btn-plus,
+.btn-orange-plus,
+.btn-green-plus {
+  flex-shrink: 0;
+  /* Prevent button from shrinking */
+  width: 50px;
+  height: 50px;
+  /* Consistent large size */
+  margin-left: 5px;
 }
 
 /* --- Common Components --- */
