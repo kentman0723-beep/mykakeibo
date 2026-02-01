@@ -3,6 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import Settings from './pages/Settings';
 import PrivateRoute from './components/common/PrivateRoute';
 
 function App() {
@@ -13,6 +14,11 @@ function App() {
           <Route path="/" element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          } />
+          <Route path="/settings" element={
+            <PrivateRoute>
+              <Settings />
             </PrivateRoute>
           } />
           <Route path="/login" element={<Login />} />

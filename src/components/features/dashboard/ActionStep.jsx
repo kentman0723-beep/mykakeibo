@@ -4,6 +4,7 @@ import { useCollection } from '../../../hooks/useCollection';
 
 export default function ActionStep({ uid }) {
     const { addDocument, deleteDocument, updateDocument } = useFirestore('monthly_actions');
+    const { addDocument: addTemplate, deleteDocument: deleteTemplate } = useFirestore('user_settings');
 
     // Fetch actions
     const { documents: actions } = useCollection(
@@ -11,7 +12,16 @@ export default function ActionStep({ uid }) {
         ['uid', '==', uid]
     );
 
+    // Fetch templates
+    const { documents: allSettings } = useCollection(
+        'user_settings',
+        ['uid', '==', uid]
+    );
+    const templates = allSettings ? allSettings.filter(s => s.type === 'action_template') : [];
+
     const [task, setTask] = useState('');
+    const [templateName, setTemplateName] = useState('');
+    const [showTemplates, setShowTemplates] = useState(false);
 
     const handleAddTask = async () => {
         if (!task) return;
@@ -22,6 +32,25 @@ export default function ActionStep({ uid }) {
             createdAt: new Date().toISOString()
         });
         setTask('');
+    };
+
+    const handleAddTemplate = async () => {
+        if (!templateName) return;
+        await addTemplate({
+            uid,
+            type: 'action_template',
+            title: templateName
+        });
+        setTemplateName('');
+    };
+
+    const addFromTemplate = async (templateTitle) => {
+        await addDocument({
+            uid,
+            title: templateTitle,
+            completed: false,
+            createdAt: new Date().toISOString()
+        });
     };
 
     const toggleComplete = (action) => {
@@ -36,7 +65,38 @@ export default function ActionStep({ uid }) {
             </div>
 
             <div className="action-card">
-                <button className="btn-set-default">+ 定型アクションをセットする</button>
+                <button
+                    className="btn-set-default"
+                    onClick={() => setShowTemplates(!showTemplates)}
+                >
+                    {showTemplates ? "▲ 閉じる" : "+ 定型アクションをセットする"}
+                </button>
+
+                {showTemplates && (
+                    <div className="template-area">
+                        <div className="add-template-row">
+                            <input
+                                type="text"
+                                value={templateName}
+                                onChange={(e) => setTemplateName(e.target.value)}
+                                placeholder="新しい定型アクション..."
+                            />
+                            <button className="btn-green-plus" onClick={handleAddTemplate}>登録</button>
+                        </div>
+                        <ul className="template-list-simple">
+                            {templates.map(tmpl => (
+                                <li key={tmpl.id}>
+                                    <span>{tmpl.title}</span>
+                                    <div className="template-actions">
+                                        <button className="btn-use" onClick={() => addFromTemplate(tmpl.title)} title="リストに追加">＋</button>
+                                        <button className="btn-del" onClick={() => deleteTemplate(tmpl.id)} title="削除">×</button>
+                                    </div>
+                                </li>
+                            ))}
+                            {templates.length === 0 && <li className="empty-msg">定型アクションはまだありません</li>}
+                        </ul>
+                    </div>
+                )}
 
                 <div className="add-task-row">
                     <input
