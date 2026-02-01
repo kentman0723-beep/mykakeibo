@@ -995,6 +995,57 @@ input:focus {
   gap: 10px;
 }
 
+/* Sophisticated Add Buttons */
+.btn-plus,
+.btn-orange-plus,
+.btn-green-plus {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  /* Slightly rounded square */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-plus {
+  background: #D53F8C;
+  color: white;
+}
+
+.btn-plus:hover {
+  background: #B83280;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-orange-plus {
+  background: #ED8936;
+  color: white;
+}
+
+.btn-orange-plus:hover {
+  background: #DD6B20;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-green-plus {
+  background: #48BB78;
+  color: white;
+}
+
+.btn-green-plus:hover {
+  background: #38A169;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
 .btn-use {
   background: #48BB78;
   color: white;

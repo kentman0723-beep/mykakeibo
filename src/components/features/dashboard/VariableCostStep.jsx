@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 import EditTransactionModal from '../../common/EditTransactionModal';
+import { IconPlus } from '../../common/Icons';
 
 export default function VariableCostStep({ uid, transactions }) {
     const { addDocument, updateDocument, deleteDocument } = useFirestore('transactions');
@@ -63,7 +64,14 @@ export default function VariableCostStep({ uid, transactions }) {
                             className="input-amount"
                         />
                     </div>
-                    <button className="btn-orange-plus" onClick={handleAdd}>+</button>
+                    import {IconPlus} from '../../common/Icons';
+
+                    // ... (top imports)
+
+                    // ... inside render
+                    <button className="btn-orange-plus" onClick={handleAdd} title="追加">
+                        <IconPlus size={20} />
+                    </button>
                 </div>
 
                 <div className="recent-variable-list">

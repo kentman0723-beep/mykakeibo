@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { format } from 'date-fns';
 import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
+import { IconPlus } from '../../common/Icons';
 
 export default function FixedCostStep({ uid, transactions }) {
     const { addDocument: addTransaction, deleteDocument: deleteTransaction } = useFirestore('transactions');
@@ -88,7 +89,13 @@ export default function FixedCostStep({ uid, transactions }) {
                             className="input-amount"
                         />
                     </div>
-                    <button className="btn-plus" onClick={handleAddTemplate}>+</button>
+                    import {IconPlus} from '../../common/Icons';
+
+                    // ...
+
+                    <button className="btn-plus" onClick={handleAddTemplate} title="追加">
+                        <IconPlus size={20} />
+                    </button>
                 </div>
 
                 <button

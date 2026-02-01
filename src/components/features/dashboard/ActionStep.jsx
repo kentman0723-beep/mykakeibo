@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
+import { IconPlus } from '../../common/Icons';
 
 export default function ActionStep({ uid }) {
     const { addDocument, deleteDocument, updateDocument } = useFirestore('monthly_actions');
@@ -77,7 +78,9 @@ export default function ActionStep({ uid }) {
                                 onChange={(e) => setTemplateName(e.target.value)}
                                 placeholder="新しい定型アクション..."
                             />
-                            <button className="btn-green-plus" onClick={handleAddTemplate}>登録</button>
+                            <button className="btn-green-plus" onClick={handleAddTemplate} title="登録">
+                                <IconPlus size={20} />
+                            </button>
                         </div>
                         <ul className="template-list-simple">
                             {templates.map(tmpl => (
@@ -103,26 +106,39 @@ export default function ActionStep({ uid }) {
                         placeholder="タスクを追加 (例: 振込)"
                         className="input-task"
                     />
-                    <button className="btn-green-plus" onClick={handleAddTask}>+</button>
-                </div>
+                    import {IconPlus} from '../../common/Icons';
 
-                <ul className="action-list">
-                    {actions && actions.length === 0 && <li className="empty-message">タスクはありません</li>}
-                    {actions && actions.map(action => (
-                        <li key={action.id} className={action.completed ? 'completed' : ''}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={action.completed}
-                                    onChange={() => toggleComplete(action)}
-                                />
-                                <span>{action.title}</span>
-                            </label>
-                            <button onClick={() => deleteDocument(action.id)} className="btn-delete-x">×</button>
-                        </li>
-                    ))}
-                </ul>
+                    // ... imports
+
+                    // ... inside render (template add button)
+                    <button className="btn-green-plus" onClick={handleAddTemplate} title="登録">
+                        <IconPlus size={20} />
+                    </button>
+                </div>
+// ...
+                // ... inside render (task add button)
+                <button className="btn-green-plus" onClick={handleAddTask} title="追加">
+                    <IconPlus size={20} />
+                </button>
             </div>
+
+            <ul className="action-list">
+                {actions && actions.length === 0 && <li className="empty-message">タスクはありません</li>}
+                {actions && actions.map(action => (
+                    <li key={action.id} className={action.completed ? 'completed' : ''}>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={action.completed}
+                                onChange={() => toggleComplete(action)}
+                            />
+                            <span>{action.title}</span>
+                        </label>
+                        <button onClick={() => deleteDocument(action.id)} className="btn-delete-x">×</button>
+                    </li>
+                ))}
+            </ul>
         </div>
+        </div >
     );
 }
