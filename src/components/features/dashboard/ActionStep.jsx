@@ -55,9 +55,8 @@ export default function ActionStep({ uid }) {
     };
 
     return (
-        <div className="step-container">
+        <div className="step-container action-section">
             <div className="step-header">
-                <span className="step-label green">STEP 4</span>
                 <h2>今月のアクション</h2>
             </div>
 

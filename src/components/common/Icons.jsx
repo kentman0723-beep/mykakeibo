@@ -98,11 +98,19 @@ export const IconPlus = ({ size = 24, color = "currentColor", className = "" }) 
 );
 
 export const IconNichiLogo = ({ size = 24, color = "currentColor", className = "" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size * 2.2} height={size} viewBox="0 0 88 40" fill="none" className={className}>
-        {/* Version 3: Modern Geometric "N" with rising sun abstraction */}
-        <path d="M22 28V12" stroke={color} strokeWidth="3" strokeLinecap="round" />
-        <path d="M22 14C22 14 28 8 36 8C44 8 44 16 44 28" stroke={color} strokeWidth="3" strokeLinecap="round" />
-        <circle cx="58" cy="12" r="4" fill="#ED8936" />
-        <text x="20" y="38" fontFamily="sans-serif" fontSize="9" letterSpacing="3" fill={color} fontWeight="500" style={{ textTransform: 'uppercase' }}>nichi</text>
+    <svg xmlns="http://www.w3.org/2000/svg" width={size * 1.2} height={size} viewBox="0 0 60 50" fill="none" className={className}>
+        {/* Refined modern "n" with elegant arch and accent dot */}
+        <g>
+            {/* Left vertical stroke */}
+            <path d="M12 38V18" stroke={color || "#2D3748"} strokeWidth="3.5" strokeLinecap="round" />
+            {/* Elegant arch connecting to right stroke */}
+            <path d="M12 24C12 16 18 10 28 10C38 10 38 16 38 24" stroke={color || "#2D3748"} strokeWidth="3.5" strokeLinecap="round" fill="none" />
+            {/* Right vertical stroke */}
+            <path d="M38 38V24" stroke={color || "#2D3748"} strokeWidth="3.5" strokeLinecap="round" />
+            {/* Orange accent dot */}
+            <circle cx="48" cy="10" r="5" fill="#ED8936" />
+        </g>
+        {/* NICHI text below */}
+        <text x="8" y="48" fontFamily="'Inter', 'Helvetica', sans-serif" fontSize="10" letterSpacing="3.5" fill={color || "#2D3748"} fontWeight="500">NICHI</text>
     </svg>
 );

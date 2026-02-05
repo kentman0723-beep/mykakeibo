@@ -223,9 +223,9 @@ input[type="text"],
 .btn-green-plus,
 .btn-plus {
   margin-left: 10px;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
   box-shadow: none;
   /* Remove individual shadow as container has it */
 }
@@ -269,16 +269,16 @@ input[type="password"] {
 .btn-plus,
 .btn-orange-plus,
 .btn-green-plus {
-  height: 48px;
+  height: 36px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 50px;
-  /* Square for icon buttons */
-  height: 50px;
-  border-radius: 12px;
+  width: 36px;
+  /* Square for icon buttons - reduced size */
+  height: 36px;
+  border-radius: 10px;
   margin-left: 5px;
 }
 
@@ -726,9 +726,9 @@ input[type="password"] {
 .btn-plus {
   background: #D53F8C;
   box-shadow: 0 4px 10px rgba(213, 63, 140, 0.3);
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -768,13 +768,29 @@ input[type="password"] {
   background: #ED8936;
   color: white;
   border: none;
-  width: 44px;
-  border-radius: 12px;
-  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 1.2rem;
   box-shadow: 0 4px 10px rgba(237, 137, 54, 0.3);
 }
 
+.btn-green-plus {
+  background: #48BB78;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(72, 187, 120, 0.3);
+}
+
 /* Actions */
+.action-section {
+  margin-bottom: 30px;
+}
+
 .action-card {
   padding: 25px;
   border: none;
