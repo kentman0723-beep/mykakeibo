@@ -78,7 +78,7 @@ export default function ActionStep({ uid }) {
                                 placeholder="新しい定型アクション..."
                             />
                             <button className="btn-green-plus" onClick={handleAddTemplate} title="登録">
-                                <IconPlus size={20} />
+                                <IconPlus size={14} />
                             </button>
                         </div>
                         <ul className="template-list-simple">
@@ -110,7 +110,7 @@ export default function ActionStep({ uid }) {
 
 
                     <button className="btn-green-plus" onClick={handleAddTask} title="追加">
-                        <IconPlus size={20} />
+                        <IconPlus size={14} />
                     </button>
                 </div>
 

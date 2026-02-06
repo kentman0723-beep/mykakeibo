@@ -68,7 +68,7 @@ export default function VariableCostStep({ uid, transactions }) {
 
 
                     <button className="btn-orange-plus" onClick={handleAdd} title="追加">
-                        <IconPlus size={20} />
+                        <IconPlus size={14} />
                     </button>
                 </div>
 

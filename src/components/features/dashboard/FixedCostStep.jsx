@@ -92,7 +92,7 @@ export default function FixedCostStep({ uid, transactions }) {
 
 
                     <button className="btn-plus" onClick={handleAddTemplate} title="追加">
-                        <IconPlus size={20} />
+                        <IconPlus size={14} />
                     </button>
                 </div>
 

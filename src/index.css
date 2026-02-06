@@ -1109,10 +1109,10 @@ input[type="password"] {
 .btn-plus,
 .btn-orange-plus,
 .btn-green-plus {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border: none;
-  border-radius: 10px;
+  border-radius: 50%;
   /* Slightly rounded square */
   display: flex;
   align-items: center;
@@ -1120,7 +1120,7 @@ input[type="password"] {
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-plus {

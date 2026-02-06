@@ -98,81 +98,39 @@ export const IconPlus = ({ size = 24, color = "currentColor", className = "" }) 
 );
 
 export const IconNichiLogo = ({ size = 24, color, className = "" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size * 1.5} height={size * 1.1} viewBox="0 0 80 55" fill="none" className={className}>
+    <svg xmlns="http://www.w3.org/2000/svg" width={size * 2.2} height={size} viewBox="0 0 120 50" fill="none" className={className}>
         <defs>
-            {/* Premium gradient for the main logo */}
-            <linearGradient id="nichiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#1a365d" />
-                <stop offset="50%" stopColor="#2c5282" />
-                <stop offset="100%" stopColor="#2b6cb0" />
+            {/* Modern gradient */}
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#6366F1" />
+                <stop offset="100%" stopColor="#8B5CF6" />
             </linearGradient>
-            {/* Vibrant accent gradient */}
-            <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#F6AD55" />
-                <stop offset="100%" stopColor="#ED8936" />
-            </linearGradient>
-            {/* Subtle glow effect */}
-            <filter id="accentGlow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-                <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                </feMerge>
-            </filter>
         </defs>
 
-        <g>
-            {/* Left vertical stroke with rounded cap */}
-            <path
-                d="M14 36V20"
-                stroke={color || "url(#nichiGradient)"}
-                strokeWidth="4"
-                strokeLinecap="round"
-            />
-            {/* Elegant arch connecting to right stroke - smoother curve */}
-            <path
-                d="M14 26C14 14 22 8 32 8C42 8 46 14 46 22"
-                stroke={color || "url(#nichiGradient)"}
-                strokeWidth="4"
-                strokeLinecap="round"
-                fill="none"
-            />
-            {/* Right vertical stroke */}
-            <path
-                d="M46 36V22"
-                stroke={color || "url(#nichiGradient)"}
-                strokeWidth="4"
-                strokeLinecap="round"
-            />
-            {/* Premium accent dot with glow */}
-            <circle
-                cx="58"
-                cy="10"
-                r="6"
-                fill="url(#accentGradient)"
-                filter="url(#accentGlow)"
-            />
-            {/* Inner highlight for depth */}
-            <circle
-                cx="56"
-                cy="8"
-                r="2"
-                fill="#FBD38D"
-                opacity="0.6"
-            />
-        </g>
+        {/* Circular icon mark */}
+        <circle cx="25" cy="25" r="22" fill="url(#logoGrad)" />
 
-        {/* NICHI text - refined typography */}
+        {/* Stylized "N" inside circle */}
+        <path
+            d="M16 34V16M16 16L34 34M34 34V16"
+            stroke="white"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+        />
+
+        {/* NICHI text - modern sans */}
         <text
-            x="14"
-            y="50"
-            fontFamily="'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif"
-            fontSize="11"
-            letterSpacing="4"
-            fill={color || "#2D3748"}
-            fontWeight="600"
+            x="56"
+            y="32"
+            fontFamily="'Inter', system-ui, sans-serif"
+            fontSize="18"
+            letterSpacing="2"
+            fill={color || "#1F2937"}
+            fontWeight="700"
         >
-            NICHI
+            nichi
         </text>
     </svg>
 );
