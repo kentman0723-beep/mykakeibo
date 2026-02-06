@@ -19,7 +19,7 @@ export default function Login() {
             await login(email, password);
             navigate("/");
         } catch {
-            setError("Failed to log in. Please check your email and password.");
+            setError("ログインに失敗しました。メールアドレスとパスワードをご確認ください。");
         }
         setLoading(false);
     }
@@ -27,11 +27,11 @@ export default function Login() {
     return (
         <div className="auth-container">
             <div className="auth-card">
-                <h2>Log In</h2>
+                <h2>ログイン</h2>
                 {error && <div className="alert error">{error}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">メールアドレス</label>
                         <input
                             type="email"
                             id="email"
@@ -41,7 +41,7 @@ export default function Login() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">パスワード</label>
                         <input
                             type="password"
                             id="password"
@@ -51,11 +51,11 @@ export default function Login() {
                         />
                     </div>
                     <button disabled={loading} type="submit" className="btn-primary">
-                        Log In
+                        ログイン
                     </button>
                 </form>
                 <div className="auth-footer">
-                    Need an account? <Link to="/signup">Sign Up</Link>
+                    アカウントをお持ちでないですか？ <Link to="/signup">新規登録</Link>
                 </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ export default function Signup() {
         e.preventDefault();
 
         if (password !== passwordConfirm) {
-            return setError("Passwords do not match");
+            return setError("パスワードが一致していません");
         }
 
         try {
@@ -31,7 +31,7 @@ export default function Signup() {
             navigate("/");
         } catch (err) {
             console.error(err);
-            setError("Failed to create an account.");
+            setError("アカウントの作成に失敗しました。");
         }
         setLoading(false);
     }
@@ -39,22 +39,22 @@ export default function Signup() {
     return (
         <div className="auth-container">
             <div className="auth-card">
-                <h2>Sign Up</h2>
+                <h2>新規登録</h2>
                 {error && <div className="alert error">{error}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="nickname">Nickname</label>
+                        <label htmlFor="nickname">ニックネーム</label>
                         <input
                             type="text"
                             id="nickname"
                             value={nickname}
                             onChange={(e) => setNickname(e.target.value)}
                             required
-                            placeholder="MyKakeibo User"
+                            placeholder="お名前"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">メールアドレス</label>
                         <input
                             type="email"
                             id="email"
@@ -64,7 +64,7 @@ export default function Signup() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">パスワード</label>
                         <input
                             type="password"
                             id="password"
@@ -74,7 +74,7 @@ export default function Signup() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password-confirm">Password Confirmation</label>
+                        <label htmlFor="password-confirm">パスワード（確認）</label>
                         <input
                             type="password"
                             id="password-confirm"
@@ -84,11 +84,11 @@ export default function Signup() {
                         />
                     </div>
                     <button disabled={loading} type="submit" className="btn-primary">
-                        Sign Up
+                        新規登録
                     </button>
                 </form>
                 <div className="auth-footer">
-                    Already have an account? <Link to="/login">Log In</Link>
+                    アカウントをお持ちですか？ <Link to="/login">ログイン</Link>
                 </div>
             </div>
         </div>

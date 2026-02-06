@@ -21,7 +21,7 @@ export default function Settings() {
 
         // Validation for password if provided
         if (password && password !== passwordConfirm) {
-            return setError("Passwords do not match");
+            return setError("パスワードが一致していません");
         }
 
         const promises = [];
@@ -41,14 +41,14 @@ export default function Settings() {
 
         Promise.all(promises)
             .then(() => {
-                setMessage("Profile updated successfully");
+                setMessage("プロフィールを更新しました");
             })
             .catch((err) => {
                 console.error(err);
                 if (err.code === 'auth/requires-recent-login') {
                     setError("セキュリティのため、重要な変更（メール/パスワード）を行う前に再ログインが必要です。ログアウトして再度ログインしてください。");
                 } else {
-                    setError("Failed to update account: " + err.message);
+                    setError("アカウントの更新に失敗しました: " + err.message);
                 }
             })
             .finally(() => {
@@ -59,8 +59,8 @@ export default function Settings() {
     return (
         <div className="layout-container">
             <header className="page-header">
-                <button className="btn-back" onClick={() => navigate("/")}>← Back</button>
-                <h2>Account Settings</h2>
+                <button className="btn-back" onClick={() => navigate("/")}>← 戻る</button>
+                <h2>アカウント設定</h2>
             </header>
 
             <div className="settings-card">
@@ -69,16 +69,16 @@ export default function Settings() {
 
                 <form onSubmit={handleUpdateProfile}>
                     <div className="form-group">
-                        <label>Nickname</label>
+                        <label>ニックネーム</label>
                         <input
                             type="text"
                             value={nickname}
                             onChange={(e) => setNickname(e.target.value)}
-                            placeholder="Display Name"
+                            placeholder="表示名"
                         />
                     </div>
                     <div className="form-group">
-                        <label>Email</label>
+                        <label>メールアドレス</label>
                         <input
                             type="email"
                             value={email}
@@ -87,27 +87,27 @@ export default function Settings() {
                         />
                     </div>
                     <div className="form-group">
-                        <label>New Password (Leave blank to keep)</label>
+                        <label>新しいパスワード（変更しない場合は空欄）</label>
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="New Password"
+                            placeholder="新しいパスワード"
                         />
                     </div>
                     <div className="form-group">
-                        <label>Confirm New Password</label>
+                        <label>パスワード確認</label>
                         <input
                             type="password"
                             value={passwordConfirm}
                             onChange={(e) => setPasswordConfirm(e.target.value)}
-                            placeholder="Confirm New Password"
+                            placeholder="パスワードを再入力"
                             disabled={!password}
                         />
                     </div>
 
                     <button disabled={loading} className="btn-primary" type="submit">
-                        Update Profile
+                        更新する
                     </button>
                 </form>
             </div>

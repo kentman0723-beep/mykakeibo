@@ -1109,10 +1109,10 @@ input[type="password"] {
 .btn-plus,
 .btn-orange-plus,
 .btn-green-plus {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   /* Slightly rounded square */
   display: flex;
   align-items: center;

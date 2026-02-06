@@ -97,20 +97,82 @@ export const IconPlus = ({ size = 24, color = "currentColor", className = "" }) 
     </svg>
 );
 
-export const IconNichiLogo = ({ size = 24, color = "currentColor", className = "" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size * 1.2} height={size} viewBox="0 0 60 50" fill="none" className={className}>
-        {/* Refined modern "n" with elegant arch and accent dot */}
+export const IconNichiLogo = ({ size = 24, color, className = "" }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size * 1.5} height={size * 1.1} viewBox="0 0 80 55" fill="none" className={className}>
+        <defs>
+            {/* Premium gradient for the main logo */}
+            <linearGradient id="nichiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#1a365d" />
+                <stop offset="50%" stopColor="#2c5282" />
+                <stop offset="100%" stopColor="#2b6cb0" />
+            </linearGradient>
+            {/* Vibrant accent gradient */}
+            <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#F6AD55" />
+                <stop offset="100%" stopColor="#ED8936" />
+            </linearGradient>
+            {/* Subtle glow effect */}
+            <filter id="accentGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
         <g>
-            {/* Left vertical stroke */}
-            <path d="M12 38V18" stroke={color || "#2D3748"} strokeWidth="3.5" strokeLinecap="round" />
-            {/* Elegant arch connecting to right stroke */}
-            <path d="M12 24C12 16 18 10 28 10C38 10 38 16 38 24" stroke={color || "#2D3748"} strokeWidth="3.5" strokeLinecap="round" fill="none" />
+            {/* Left vertical stroke with rounded cap */}
+            <path
+                d="M14 36V20"
+                stroke={color || "url(#nichiGradient)"}
+                strokeWidth="4"
+                strokeLinecap="round"
+            />
+            {/* Elegant arch connecting to right stroke - smoother curve */}
+            <path
+                d="M14 26C14 14 22 8 32 8C42 8 46 14 46 22"
+                stroke={color || "url(#nichiGradient)"}
+                strokeWidth="4"
+                strokeLinecap="round"
+                fill="none"
+            />
             {/* Right vertical stroke */}
-            <path d="M38 38V24" stroke={color || "#2D3748"} strokeWidth="3.5" strokeLinecap="round" />
-            {/* Orange accent dot */}
-            <circle cx="48" cy="10" r="5" fill="#ED8936" />
+            <path
+                d="M46 36V22"
+                stroke={color || "url(#nichiGradient)"}
+                strokeWidth="4"
+                strokeLinecap="round"
+            />
+            {/* Premium accent dot with glow */}
+            <circle
+                cx="58"
+                cy="10"
+                r="6"
+                fill="url(#accentGradient)"
+                filter="url(#accentGlow)"
+            />
+            {/* Inner highlight for depth */}
+            <circle
+                cx="56"
+                cy="8"
+                r="2"
+                fill="#FBD38D"
+                opacity="0.6"
+            />
         </g>
-        {/* NICHI text below */}
-        <text x="8" y="48" fontFamily="'Inter', 'Helvetica', sans-serif" fontSize="10" letterSpacing="3.5" fill={color || "#2D3748"} fontWeight="500">NICHI</text>
+
+        {/* NICHI text - refined typography */}
+        <text
+            x="14"
+            y="50"
+            fontFamily="'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif"
+            fontSize="11"
+            letterSpacing="4"
+            fill={color || "#2D3748"}
+            fontWeight="600"
+        >
+            NICHI
+        </text>
     </svg>
 );

@@ -80,13 +80,13 @@ export default function Dashboard() {
                     <div className="user-display">
                         {currentUser?.displayName || currentUser?.email}
                     </div>
-                    <button className="btn-icon" onClick={() => navigate("/yearly")} title="Yearly Report">
+                    <button className="btn-icon" onClick={() => navigate("/yearly")} title="年間レポート">
                         <IconChart size={20} color="#718096" />
                     </button>
-                    <button className="btn-icon" onClick={() => navigate("/settings")} title="Settings">
+                    <button className="btn-icon" onClick={() => navigate("/settings")} title="設定">
                         <IconSettings size={20} color="#718096" />
                     </button>
-                    <button className="btn-icon" onClick={handleLogout} title="Log Out">
+                    <button className="btn-icon" onClick={handleLogout} title="ログアウト">
                         <IconLogOut size={20} color="#718096" />
                     </button>
                 </div>
