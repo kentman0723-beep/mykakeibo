@@ -102,9 +102,9 @@ export default function Dashboard() {
 
             <main className="steps-wrapper">
                 <ActionStep uid={currentUser?.uid} />
-                <IncomeStep uid={currentUser?.uid} transactions={transactions} />
-                <FixedCostStep uid={currentUser?.uid} transactions={transactions} />
-                <VariableCostStep uid={currentUser?.uid} transactions={transactions} />
+                <IncomeStep uid={currentUser?.uid} transactions={transactions} selectedDate={currentDate} />
+                <FixedCostStep uid={currentUser?.uid} transactions={transactions} selectedDate={currentDate} />
+                <VariableCostStep uid={currentUser?.uid} transactions={transactions} selectedDate={currentDate} />
             </main>
 
 

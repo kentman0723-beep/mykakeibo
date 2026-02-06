@@ -4,7 +4,7 @@ import { useFirestore } from '../../../hooks/useFirestore';
 import { IconBuilding, IconBriefcase } from '../../common/Icons';
 import EditTransactionModal from '../../common/EditTransactionModal';
 
-export default function IncomeStep({ uid, transactions }) {
+export default function IncomeStep({ uid, transactions, selectedDate }) {
     const { addDocument, updateDocument, deleteDocument, error } = useFirestore('transactions');
     const [isAdding, setIsAdding] = useState(null); // 'main' or 'side' or null
     const [amount, setAmount] = useState('');
@@ -30,7 +30,7 @@ export default function IncomeStep({ uid, transactions }) {
             name: type === 'income_main' ? '本業給与' : '副業・その他',
             amount: parseInt(amount),
             type: type,
-            date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
+            date: format(selectedDate || new Date(), "yyyy-MM-dd'T'HH:mm:ss")
         });
         setAmount('');
         setIsAdding(null);

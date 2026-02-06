@@ -4,7 +4,7 @@ import { useFirestore } from '../../../hooks/useFirestore';
 import { useCollection } from '../../../hooks/useCollection';
 import { IconPlus } from '../../common/Icons';
 
-export default function FixedCostStep({ uid, transactions }) {
+export default function FixedCostStep({ uid, transactions, selectedDate }) {
     const { addDocument: addTransaction, deleteDocument: deleteTransaction } = useFirestore('transactions');
     const { addDocument: addTemplate, deleteDocument: deleteTemplate } = useFirestore('user_settings');
     // We'll use 'user_settings' collection to store fixed cost templates with type='fixed_cost_template'
@@ -44,7 +44,7 @@ export default function FixedCostStep({ uid, transactions }) {
                 name: template.name,
                 amount: template.amount,
                 type: 'fixed_cost',
-                date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
+                date: format(selectedDate || new Date(), "yyyy-MM-dd'T'HH:mm:ss")
             });
         });
 

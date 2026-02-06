@@ -4,7 +4,7 @@ import { useFirestore } from '../../../hooks/useFirestore';
 import EditTransactionModal from '../../common/EditTransactionModal';
 import { IconPlus } from '../../common/Icons';
 
-export default function VariableCostStep({ uid, transactions }) {
+export default function VariableCostStep({ uid, transactions, selectedDate }) {
     const { addDocument, updateDocument, deleteDocument } = useFirestore('transactions');
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
@@ -21,7 +21,7 @@ export default function VariableCostStep({ uid, transactions }) {
             name,
             amount: parseInt(amount),
             type: 'variable_cost',
-            date: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss")
+            date: format(selectedDate || new Date(), "yyyy-MM-dd'T'HH:mm:ss")
         });
         setName('');
         setAmount('');
